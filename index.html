@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maritime Digital Solutions</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #071827;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 7%;
+      background: #06131f;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 7%;
+      background: linear-gradient(135deg, #071827, #0b3048);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .tag {
+      color: #4fc3f7;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #c9d7df;
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 14px 24px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .primary {
+      background: #4fc3f7;
+      color: #06131f;
+    }
+
+    .secondary {
+      border: 1px solid #4fc3f7;
+      color: #ffffff;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .section-intro {
+      color: #aebfc9;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .solutions {
+      background: #091f30;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #102b3d;
+      padding: 30px;
+      border-radius: 14px;
+      border: 1px solid #1b4056;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 23px;
+    }
+
+    .card p {
+      color: #b8c8d1;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #173f52;
+      color: #4fc3f7;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .vision {
+      text-align: center;
+      background: #06131f;
+    }
+
+    .vision p {
+      max-width: 750px;
+      margin: auto;
+      color: #b8c8d1;
+      font-size: 18px;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #040d15;
+      color: #8398a5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        padding: 18px 5%;
+      }
+
+      nav a {
+        display: none;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .hero {
+        padding: 60px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">MARITIME DIGITAL SOLUTIONS</div>
+
+    <div>
+      <a href="#solutions">Solutions</a>
+      <a href="#vision">Vision</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+
+      <div class="tag">Maritime Technology</div>
+
+      <h1>
+        We solve maritime problems with digital solutions.
+      </h1>
+
+      <p>
+        Practical digital tools designed to make vessel operations,
+        maintenance, reporting and maritime management simpler,
+        faster and more efficient.
+      </p>
+
+      <div class="buttons">
+        <a href="#solutions" class="primary">Explore Solutions</a>
+        <a href="#contact" class="secondary">Get In Touch</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="solutions" class="solutions">
+
+    <h2 class="section-title">Our Solutions</h2>
+
+    <p class="section-intro">
+      We are building a connected ecosystem of digital tools for
+      vessels, crews, ship managers, offshore companies and maritime
+      operations teams.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>⚓ Maritime PMS</h3>
+
+        <p>
+          A digital Planned Maintenance System designed to help vessels
+          manage equipment, maintenance schedules, defects, work orders,
+          running hours and maintenance history.
+        </p>
+
+        <span class="status">IN DEVELOPMENT</span>
+      </div>
+
+
+      <div class="card">
+        <h3>📋 Vessel Reports</h3>
+
+        <p>
+          Simplify vessel reporting with structured digital data,
+          automated report generation, document storage and professional
+          operational reports.
+        </p>
+
+        <span class="status">IN DEVELOPMENT</span>
+      </div>
+
+
+      <div class="card">
+        <h3>⛽ Bunker Management</h3>
+
+        <p>
+          Digital tools for bunker operations, ROB calculations,
+          fuel records, BDN information and fuel discrepancy tracking.
+        </p>
+
+        <span class="status">COMING SOON</span>
+      </div>
+
+
+      <div class="card">
+        <h3>👥 Crew Management</h3>
+
+        <p>
+          Tools for crew documentation, certificates, expiry dates,
+          training records and operational crew information.
+        </p>
+
+        <span class="status">COMING SOON</span>
+      </div>
+
+
+      <div class="card">
+        <h3>🛡️ Safety & Compliance</h3>
+
+        <p>
+          Digital inspections, checklists, safety records and
+          compliance documentation for maritime operations.
+        </p>
+
+        <span class="status">COMING SOON</span>
+      </div>
+
+
+      <div class="card">
+        <h3>🚢 Fleet Management</h3>
+
+        <p>
+          A future centralized platform allowing maritime companies
+          to monitor vessels, maintenance, reports and operational data
+          from one location.
+        </p>
+
+        <span class="status">FUTURE</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="vision" class="vision">
+
+    <h2 class="section-title">Our Vision</h2>
+
+    <p>
+      We don't believe in building software simply because technology
+      makes it possible. We identify real operational problems and
+      create practical digital solutions that make maritime work
+      easier, safer and more efficient.
+    </p>
+
+  </section>
+
+
+  <section id="contact" class="contact">
+
+    <h2 class="section-title">Let's Solve Problems</h2>
+
+    <p class="section-intro" style="margin-left:auto;margin-right:auto;">
+      Are you a seafarer, vessel operator, ship manager or maritime
+      professional experiencing a problem that could be solved digitally?
+      We want to hear about it.
+    </p>
+
+    <div class="buttons">
+      <a href="mailto:contact@example.com" class="primary">
+        Contact Us
+      </a>
+    </div>
+
+  </section>
+
+
+  <footer>
+    © 2026 Maritime Digital Solutions. Building practical technology
+    for maritime operations.
+  </footer>
+
+</body>
+</html>
