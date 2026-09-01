@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maritime PMS Dashboard</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #06121d;
+      color: #ffffff;
+    }
+
+    .topbar {
+      background: #071827;
+      border-bottom: 1px solid #19394c;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: #39c6ff;
+    }
+
+    .user {
+      color: #9fb3bf;
+      font-size: 14px;
+    }
+
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 70px);
+    }
+
+    .sidebar {
+      width: 240px;
+      background: #081b29;
+      border-right: 1px solid #19394c;
+      padding: 25px 15px;
+    }
+
+    .vessel {
+      padding: 18px;
+      background: #0c293b;
+      border: 1px solid #1b4358;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .vessel small {
+      color: #7f98a6;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .vessel strong {
+      font-size: 18px;
+    }
+
+    .menu a {
+      display: block;
+      padding: 13px 15px;
+      margin-bottom: 5px;
+      border-radius: 8px;
+      color: #a9bbc6;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .menu a:hover,
+    .menu .active {
+      background: #0e3045;
+      color: #39c6ff;
+    }
+
+    .main {
+      flex: 1;
+      padding: 35px 5%;
+      overflow-x: hidden;
+    }
+
+    .heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      gap: 20px;
+    }
+
+    .heading h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    .heading p {
+      color: #8fa5b2;
+    }
+
+    .status {
+      padding: 10px 15px;
+      border-radius: 20px;
+      background: #123b2c;
+      color: #58e39b;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #0b2434;
+      border: 1px solid #193c50;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .card-label {
+      color: #8fa5b2;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .number {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .blue {
+      color: #39c6ff;
+    }
+
+    .yellow {
+      color: #ffd166;
+    }
+
+    .red {
+      color: #ff6b6b;
+    }
+
+    .green {
+      color: #58e39b;
+    }
+
+    .section {
+      background: #0b2434;
+      border: 1px solid #193c50;
+      border-radius: 14px;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 20px;
+      border-bottom: 1px solid #193c50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-header h2 {
+      font-size: 19px;
+    }
+
+    .view {
+      color: #39c6ff;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .maintenance {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .maintenance th,
+    .maintenance td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid #163447;
+      font-size: 14px;
+    }
+
+    .maintenance th {
+      color: #718b99;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .maintenance td {
+      color: #cbd8df;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .pill-red {
+      background: #4a2024;
+      color: #ff7b7b;
+    }
+
+    .pill-yellow {
+      background: #463b1c;
+      color: #ffd166;
+    }
+
+    .pill-green {
+      background: #173d2d;
+      color: #58e39b;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .quick-button {
+      background: #0c293b;
+      border: 1px solid #1b4358;
+      border-radius: 12px;
+      padding: 20px;
+      color: #ffffff;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .quick-button:hover {
+      border-color: #39c6ff;
+    }
+
+    .quick-icon {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .quick-button strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .quick-button small {
+      color: #849ba8;
+    }
+
+    .notice {
+      padding: 20px;
+      background: #102d40;
+      border-left: 3px solid #39c6ff;
+      color: #a9bbc6;
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+
+    @media (max-width: 1000px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sidebar {
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .layout {
+        display: block;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #19394c;
+      }
+
+      .menu {
+        display: flex;
+        overflow-x: auto;
+        gap: 5px;
+      }
+
+      .menu a {
+        white-space: nowrap;
+      }
+
+      .main {
+        padding: 25px 5%;
+      }
+
+      .heading {
+        display: block;
+      }
+
+      .status {
+        display: inline-block;
+        margin-top: 15px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .quick-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .maintenance {
+        min-width: 650px;
+      }
+
+      .section {
+        overflow-x: auto;
+      }
+
+      .section-header {
+        min-width: 650px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      MARITIME <span>DIGITAL PMS</span>
+    </div>
+
+    <div class="user">
+      Demo User · Chief Engineer
+    </div>
+  </header>
+
+
+  <div class="layout">
+
+    <aside class="sidebar">
+
+      <div class="vessel">
+        <small>ACTIVE VESSEL</small>
+        <strong>MV KARIS</strong>
+      </div>
+
+      <div class="menu">
+        <a href="#" class="active">📊 Dashboard</a>
+        <a href="#">⚙️ Equipment</a>
+        <a href="#">🔧 Maintenance</a>
+        <a href="#">📋 Work Orders</a>
+        <a href="#">⚠️ Defects</a>
+        <a href="#">📜 Certificates</a>
+        <a href="#">📦 Spare Parts</a>
+        <a href="#">📈 Reports</a>
+      </div>
+
+    </aside>
+
+
+    <main class="main">
+
+      <div class="heading">
+
+        <div>
+          <h1>Vessel Dashboard</h1>
+          <p>Maintenance overview for MV KARIS</p>
+        </div>
+
+        <div class="status">
+          ● VESSEL STATUS: GOOD
+        </div>
+
+      </div>
+
+
+      <div class="notice">
+        <strong>Good morning, Chief Engineer.</strong><br>
+        You currently have <span class="yellow">12 maintenance jobs due</span>
+        and <span class="red">4 overdue jobs</span> requiring attention.
+      </div>
+
+
+      <!-- SUMMARY CARDS -->
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-label">TOTAL EQUIPMENT</div>
+          <div class="number blue">247</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">MAINTENANCE DUE</div>
+          <div class="number yellow">12</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">OVERDUE</div>
+          <div class="number red">4</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">OPEN DEFECTS</div>
+          <div class="number red">3</div>
+        </div>
+
+      </div>
+
+
+      <!-- SECONDARY CARDS -->
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-label">OPEN WORK ORDERS</div>
+          <div class="number yellow">8</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">COMPLETED THIS MONTH</div>
+          <div class="number green">86</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">CERTIFICATES EXPIRING</div>
+          <div class="number yellow">2</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">CRITICAL DEFECTS</div>
+          <div class="number red">1</div>
+        </div>
+
+      </div>
+
+
+      <!-- MAINTENANCE -->
+
+      <div class="section">
+
+        <div class="section-header">
+
+          <h2>Maintenance Requiring Attention</h2>
+
+          <a href="#" class="view">
+            View all →
+          </a>
+
+        </div>
+
+
+        <table class="maintenance">
+
+          <thead>
+            <tr>
+              <th>Equipment</th>
+              <th>Maintenance</th>
+              <th>Due</th>
+              <th>Priority</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>Main Engine</td>
+              <td>Fuel Injector Inspection</td>
+              <td>31 Aug 2026</td>
+              <td>High</td>
+              <td>
+                <span class="pill pill-red">OVERDUE</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Generator No. 1</td>
+              <td>Lube Oil Filter Inspection</td>
+              <td>03 Sep 2026</td>
+              <td>Medium</td>
+              <td>
+                <span class="pill pill-yellow">DUE SOON</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Emergency Fire Pump</td>
+              <td>Operational Test</td>
+              <td>05 Sep 2026</td>
+              <td>High</td>
+              <td>
+                <span class="pill pill-yellow">DUE SOON</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Fuel Purifier</td>
+              <td>Clean Bowl Assembly</td>
+              <td>10 Sep 2026</td>
+              <td>Normal</td>
+              <td>
+                <span class="pill pill-green">ON SCHEDULE</span>
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- QUICK ACTIONS -->
+
+      <div class="section">
+
+        <div class="section-header">
+          <h2>Quick Actions</h2>
+        </div>
+
+        <div class="quick-grid" style="padding:20px;">
+
+          <button class="quick-button">
+            <div class="quick-icon">🔧</div>
+            <strong>New Maintenance</strong>
+            <small>Create a maintenance job</small>
+          </button>
+
+          <button class="quick-button">
+            <div class="quick-icon">⚠️</div>
+            <strong>Report Defect</strong>
+            <small>Report a vessel defect</small>
+          </button>
+
+          <button class="quick-button">
+            <div class="quick-icon">📋</div>
+            <strong>Work Order</strong>
+            <small>Create a work order</small>
+          </button>
+
+          <button class="quick-button">
+            <div class="quick-icon">📈</div>
+            <strong>Generate Report</strong>
+            <small>Create vessel report</small>
+          </button>
+
+        </div>
+
+      </div>
+
+
+    </main>
+
+  </div>
+
+</body>
+</html>
